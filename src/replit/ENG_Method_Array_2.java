@@ -1,5 +1,8 @@
 package replit;
 
+import java.beans.beancontext.BeanContextChild;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ENG_Method_Array_2 {
@@ -11,12 +14,18 @@ Input : Coding is greate.
 Output : .etaerg si gnidoC*/
         Scanner scan=new Scanner(System.in);
         String str=scan.nextLine();
-
-        System.out.print("girilen sayının tersi: ");
-        for (int i =str.length(); i >0; i--) {
+        List<String> sentence=new ArrayList<String>(List.of(str.split("")));
 
 
+        terstenyazdir(sentence);
+
+    }
+    private static void terstenyazdir(List<String> sentence) {
+        for (int i = sentence.size()-1; i >= 0 ; i--) {
+            System.out.print(sentence.get(i));
         }
 
     }
+
+
 }
