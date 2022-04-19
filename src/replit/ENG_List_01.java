@@ -1,6 +1,7 @@
 package replit;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,23 +16,47 @@ Learning java is easy
 output:
 maximum occurring character is : a
          */
-        Scanner scan=new Scanner(System.in);
-        String str=scan.nextLine();
-        List<String> sentence=new ArrayList<String>(List.of(str.split("")));
+            String str = "Learning java is easy";
+            System.out.println("The entered string is: "+str);
+            int[] freq = new int[str.length()];
+            char minChar = str.charAt(0), maxChar = str.charAt(0);
+            int i, j, min, max;
+            //Verilen dizeyi karakter dizisine dönüştürür
+            char string[] = str.toCharArray();
+            //Verilen dizedeki her kelimeyi sayın ve dizi frekansında saklayın
+            for(i = 0; i < string.length; i++)
+            {
+                freq[i] = 1;
+                for(j = i+1; j < string.length; j++)
+                {
+                    if(string[i] == string[j] && string[i] != ' ' && string[i] != '0')
+                    {
+                        freq[i]++;
 
-        int say1=0;
-        int say2=0;
-        for (int i = 0; i < sentence.size(); i++) {
-            for (int j = 1; j < sentence.size() ; j++) {
-                if (sentence.get(i)==sentence.get(j)){
-                    say1+=1;
-                }
-                if (say2<say1){
-                    
+                        //Ziyaret edilen karakterin yazdırılmasını önlemek için [j] dizesini 0 olarak ayarlayın
+                        string[j] = '0';
+                    }
                 }
             }
+            //Minimum ve maksimum meydana gelen karakterleri belirleyin
+            min = max = freq[0];
+            for(i = 0; i <freq.length; i++)
+            {
+                if(min > freq[i] && freq[i] != '0')
+                {
+                    min = freq[i];
+                    minChar = string[i];
+                }
 
+                if(max < freq[i])
+                {
+                    max = freq[i];
+                    maxChar = string[i];
+                }
+            }
+            //Oluşan minimum ve maksimum karakterleri yazdırın
+            System.out.println("Minimum occurring character: " + minChar);
+            System.out.println("Maximum occurring character: " + maxChar);
+        }
         }
 
-    }
-}
